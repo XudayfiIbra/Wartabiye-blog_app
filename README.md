@@ -12,7 +12,7 @@ Clone the project
 Navigate root folder
 
 ```bash
-  1- cd Wartabiye
+  1- cd Wartabiye-blog_app
 ```
 Install required package
 
