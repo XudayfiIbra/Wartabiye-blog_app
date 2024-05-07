@@ -7,35 +7,35 @@ The "Wartabiye Blog App" is an open-source project built on Django 4.2, Tailwind
 Clone the project
 
 ```bash
-  git clone https://github.com/XudayfiIbra/Wartabiye-blog_app.git
+   git clone https://github.com/XudayfiIbra/Wartabiye-blog_app.git
 ```
 Navigate root folder
 
 ```bash
-  1- cd Wartabiye-blog_app
+   cd Wartabiye-blog_app
 ```
 Install required package
 
 ```bash
-  1- python -m pip install django-tailwind
+   python -m pip install django-tailwind
 
 ```
 Migrate the tables
 
 ```bash
-  1- python manage.py migrate
+   python manage.py migrate
 
 ```
 Start the tailwind server
 
 ```bash
-  1- python manage.py tailwind start
+   python manage.py tailwind start
 
 ```
 Start the django server
 
 ```bash
-  1- python manage.py runserver
+   python manage.py runserver
 ```
 
     
