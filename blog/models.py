@@ -16,7 +16,7 @@ class Blog(models.Model):
     content = models.TextField(unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    thumbnail = models.ImageField()
+    thumbnail = models.ImageField(upload_to='uploaded_images')
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     
     def __str__(self):
