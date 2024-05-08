@@ -1,10 +1,76 @@
-{% extends "base/base.html" %}
+{% extends "base/base.html" %} {% block content %}
 
+<!-- CSS -->
+<style>
+  .active {
+    background-color: #484747;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 10px;
+  }
+</style>
 
-{% block content %}
+<div class="h-screen bg-neutral-800">
+  <!-- Navbar-->
+  {% include "navbar/navbar.html" %}
 
+  <!-- HomePage -->
+  <div class="ml-[260px] mt-[74px]">
+    <!-- Titile, Descripion and call-back buttons-->
+    <div class="">
+      <h1 class="text-[60px] text-white font-extrabold">
+        Stay informed with
+        <span
+          class="bg-gradient-to-r from-[#FFA500] to-[#FFD700] text-transparent bg-clip-text"
+          >Wartabiye</span
+        >
+      </h1>
+      <p class="text-[18px] text-white font-light mr-[220px] text-center">
+        Your Daily Source for News and Articles Stay Informed Stay Engaged Stay
+        Inspired<br />
+        with Wartabiye best platform for News and Articles
+      </p>
+      <!--call back buttons-->
+      <div class="ml-[310px] mt-[12px]">
+        <button
+          class="h-[32px] w-[120px] text-white rounded-[5px] font-medium text-[14px] bg-[#363639] cursor-pointer mr-[20px] hover:bg-[#49494d]"
+        >
+          Get Started
+        </button>
+        <button
+          class="h-[32px] w-[97px] text-white rounded-[5px] font-medium text-[14px] border border-[#4B4B50] cursor-pointer hover:bg-[#363639]"
+        >
+         <span class="mr-[8px]"><i class="fa-brands fa-github" style="color: #ffffff;"></i></span> GitHub
+        </button>
+      </div>
+    </div>
+    <!--Filter bar-->
+    <div
+      class="w-[641px] h-[55px] mt-[72px] bg-[#363639] rounded-[10px] ml-[120px]"
+    >
+      <ul class="flex text-[#BEBDBD] text-[21px] font-medium cursor-pointer">
+        <li class="mr-[45px] ml-[25px] mt-3 active" onclick="handleClick(this)">
+          All
+        </li>
+        <li class="mr-[45px] mt-3" onclick="handleClick(this)">Technology</li>
+        <li class="mr-[45px] mt-3" onclick="handleClick(this)">Science</li>
+        <li class="mr-[45px] mt-3" onclick="handleClick(this)">Politics</li>
+        <li class="mr-[-32px] mt-3" onclick="handleClick(this)">Economics</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<h1 class="bg-red-600 text-5xl">Blog app</h1>
+<!--JS-->
 
+<script>
+  function handleClick(element) {
+    document
+      .querySelectorAll("li")
+      .forEach((li) => li.classList.remove("active"));
+
+    element.classList.add("active");
+  }
+</script>
 
 {% endblock content %}
