@@ -1,4 +1,6 @@
-{% extends "base/base.html" %} {% block content %}
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
 
 <!-- CSS -->
 <style>
@@ -8,17 +10,19 @@
     padding-right: 6px;
     border-radius: 10px;
   }
+  
 </style>
 
-<div class="h-screen bg-neutral-800">
+<div class="h-screen bg-neutral-800 ">
   <!-- Navbar-->
   {% include "navbar/navbar.html" %}
 
   <!-- HomePage -->
-  <div class="ml-[260px] mt-[74px]">
+
+  <div class="ml-[260px] mt-[74px] ">
     <!-- Titile, Descripion and call-back buttons-->
     <div class="">
-      <h1 class="text-[60px] text-white font-extrabold">
+      <h1 data-cursor-img="{% static "assets/images/news/news.svg" %}" class="text-[60px] text-white font-extrabold cursor-pointer">
         Stay informed with
         <span
           class="bg-gradient-to-r from-[#FFA500] to-[#FFD700] text-transparent bg-clip-text"
@@ -40,7 +44,10 @@
         <button
           class="h-[32px] w-[97px] text-white rounded-[5px] font-medium text-[14px] border border-[#4B4B50] cursor-pointer hover:bg-[#363639]"
         >
-         <span class="mr-[8px]"><i class="fa-brands fa-github" style="color: #ffffff;"></i></span> GitHub
+          <span class="mr-[8px]"
+            ><i class="fa-brands fa-github" style="color: #ffffff"></i
+          ></span>
+          GitHub
         </button>
       </div>
     </div>
@@ -71,6 +78,15 @@
 
     element.classList.add("active");
   }
+
+  // Mouse hover effect
+
+  const cursor = new MouseFollower({
+    container: document.body,
+    speed: 0.3,
+    innerClassName: "mf-cursor-inner",
+
+  });
 </script>
 
 {% endblock content %}
