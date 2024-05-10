@@ -27,6 +27,13 @@
     <link rel="stylesheet" href="{% static "css/style.css" %} ">
   </head>
   <body>
+
+    <style>
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+
     <div class="font-['inter']">{% block content %} {% endblock content %}</div>
 
 

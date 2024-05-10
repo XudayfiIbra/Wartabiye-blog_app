@@ -1,10 +1,12 @@
 .mf-cursor-inner {
     width: 8px;
     height: 8px;
-    background-color: white; /* Change the color to red */
+    background-color: white; 
     border-radius: 50%;
     position: absolute;
     top: 0;
     left: 0;
     transform: translate(-50%, -50%);
   }
+
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from . models import Blog
 
 def home_page(request):
-    return render(request, 'home/home_page.html')
+    blog = Blog.objects.all()
+    return render(request, 'home/home_page.html', {'blogs': blog})

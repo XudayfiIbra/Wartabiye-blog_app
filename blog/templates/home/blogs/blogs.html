@@ -1,2 +1,45 @@
-{% extends "base/base.html" %}
-{% block cotent %}{% endblock cotent %}
+{% load static %}
+
+
+
+
+
+
+<!--blog-->
+
+<div class="grid grid-cols-3  mr-[190px]">
+
+
+<!--Single blog -->
+{% for blog in blogs %}
+<div
+  class="w-[265px] h-[370px] bg-[#363639] rounded-[16px] mt-10 cursor-pointer"
+>
+  <img class="w-[265px] rounded-[16px] h-[176.99px]" src="{{blog.thumbnail}}">
+
+  <div class="mt-4 mx-[15px]">
+    <!-- Title -->
+    <h1 class="text-white font-bold text-[16px]">
+      {{blog.title}}
+    </h1>
+    <!--Description-->
+    <p class="text-white font-light mt-2 text-[14px]">
+      {{blog.content|truncatewords:8}} <a class="text-blue-400" href="#">Read</a>
+    </p>
+  </div>
+  <!--Infomaton-->
+
+  <div class="flex justify-between items-center mx-[15px] mt-6 h-10">
+    <div class="flex justify-between items-center">
+      <img class="w-8 h-8 left-[15px] top-[264px] mt-[-10px] rounded-full"
+      src="" />
+      <p class="text-white font-light text-[10px] ml-2 mt-[-8px]">
+        {{blog.author}}
+      </p>
+    </div>
+    <p class="text-white font-light text-[10px] mt-[-8px]">{{ blog.created_at|timesince }}</p>
+  </div>
+</div>
+{% endfor %}
+
+</div>
