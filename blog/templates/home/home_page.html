@@ -91,6 +91,16 @@
     speed: 0.3,
     innerClassName: "mf-cursor-inner",
   });
+
+
+  //jquery
+  $( function() {
+    var availableTags = [
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
 </script>
 
 {% endblock content %}

@@ -5,6 +5,7 @@
 
 
 
+
 <!--blog-->
 
 <div class="grid grid-cols-3  mr-[190px]">
@@ -37,9 +38,11 @@
         {{blog.author}}
       </p>
     </div>
-    <p class="text-white font-light text-[10px] mt-[-8px]">{{ blog.created_at|timesince }}</p>
+    <p class="text-white font-light text-[10px] mt-[-8px]">{{ blog.created_at|timesince}} ago</p>
   </div>
 </div>
 {% endfor %}
 
 </div>
+
+
