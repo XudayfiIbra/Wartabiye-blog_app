@@ -8,13 +8,13 @@
 
 <!--blog-->
 
-<div class="grid grid-cols-1 ml-[-3px]">
+<div class="grid grid-cols-1 lg:gap-x-5 ml-[-3px] lg:mr-[70px] md:grid-cols-2 lg:grid-cols-4">
 
 
 <!--Single blog -->
 {% for blog in blogs %}
 <div
-  class="w-[350px] h-[370px] bg-[#363639] rounded-[16px] mt-10 cursor-pointer"
+  class="w-[300px] h-[360px] ml-9 sm-custom:ml-2  bg-[#363639] rounded-[16px] mt-10 cursor-pointer"
 >
   <img class="w-[350px] rounded-[16px] h-[170px]" src="{{blog.thumbnail}}">
 
