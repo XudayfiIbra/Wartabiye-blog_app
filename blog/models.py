@@ -4,21 +4,21 @@ from django.db.models import Count
 from django.urls import  reverse
 
 
-class Categories(models.Model):
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(unique=True)
+class Tag(models.Model):
+    name = models.CharField(max_length=20)
+    
     
     def __str__(self):
         return self.name
+    
 
 class Blog(models.Model):
     title = models.CharField(max_length=400)
-    #test= models.CharField(max_length=223, null=True)
     content = models.TextField(unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     thumbnail = models.ImageField(upload_to='blog/thumbnail')
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag, related_name="Blog")
     
     def __str__(self):
         return self.title

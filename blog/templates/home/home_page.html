@@ -1,4 +1,6 @@
-{% extends "base/base.html" %} {% load static %} {% block content %}
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
 
 <!-- CSS -->
 <style>
@@ -17,90 +19,44 @@
   <!-- HomePage -->
 
   <div class="mx-[30px] mt-[74px]">
-    <!-- Titile, Descripion and call-back buttons-->
+    <!-- Title, Description, and call-back buttons-->
     <div class="">
       <h1 class="text-[40px] md:text-[50px] text-white text-center font-extrabold cursor-pointer lg:text-[60px] sm-custom:text-[30px]">
         Stay informed with
-        <span
-          class="bg-gradient-to-r from-[#FFA500] to-[#FFD700] text-transparent bg-clip-text"
-          >Wartabiye</span
-        >
+        <span class="bg-gradient-to-r from-[#FFA500] to-[#FFD700] text-transparent bg-clip-text">Wartabiye</span>
       </h1>
       <p class="text-[13px] md:text-[15px] text-white font-light text-center md:w-[450px] md:ml-[145px] lg:w-[550px] lg:ml-[345px]">
-        Your Daily Source for News and Articles Stay Informed Stay Engaged Stay
-        Inspired
-        with Wartabiye best platform for News and Articles
+        Your Daily Source for News and Articles Stay Informed Stay Engaged Stay Inspired with Wartabiye best platform for News and Articles
       </p>
-      <!--call back buttons-->
+      <!-- Call back buttons -->
       <div class="text-center mt-[12px]">
-        <button
-          class="h-[30px] w-[100px] lg:h-[35px] lg:w-[150px] text-white rounded-[5px] font-medium text-[14px] lg:text-[18px] bg-[#363639] cursor-pointer mr-[20px] hover:bg-[#49494d]"
-        >
-          Get Started
-        </button>
-        <!--Github link is missing-->
+        <button class="h-[30px] w-[100px] lg:h-[35px] lg:w-[150px] text-white rounded-[5px] font-medium text-[14px] lg:text-[18px] bg-[#363639] cursor-pointer mr-[20px] hover:bg-[#49494d]">Get Started</button>
         <a href="#">
-          <button
-            class="h-[30px] w-[90px] lg:h-[35px] lg:w-[120px] text-white rounded-[5px] font-medium text-[14px] lg:text-[18px] border border-[#4B4B50] cursor-pointer hover:bg-[#363639]"
-          >
-            <span class="mr-[1px]"
-              ><i class="fa-brands fa-github" style="color: #ffffff"></i
-            ></span>
+          <button class="h-[30px] w-[90px] lg:h-[35px] lg:w-[120px] text-white rounded-[5px] font-medium text-[14px] lg:text-[18px] border border-[#4B4B50] cursor-pointer hover:bg-[#363639]">
+            <span class="mr-[1px]"><i class="fa-brands fa-github" style="color: #ffffff"></i></span>
             GitHub
-          </button></a
-        >
+          </button>
+        </a>
       </div>
     </div>
-    <!--Filter bar-->
-    <div
-      class="w-[370px] h-[40px] lg:h-[50px] md:w-[410px] mt-[40px] md:ml-[170px]  bg-[#363639] rounded-[10px] lg:w-[510px] lg:ml-[390px] sm-custom:w-[340px] sm-custom:ml-[-10px]"
-    >
+    <!-- Filter bar -->
+    <div class="w-[370px] h-[40px] lg:h-[50px] md:w-[410px] mt-[40px] md:ml-[170px] bg-[#363639] rounded-[10px] lg:w-[510px] lg:ml-[390px] sm-custom:w-[340px] sm-custom:ml-[-10px]">
       <ul class="flex text-[#BEBDBD] text-[14px] md:text-[16px] sm-custom:text-[13px] font-medium cursor-pointer lg:text-[20px]">
         <li class="mr-[12px] sm-custom:ml-2 ml-3 lg:ml-5 mt-3 md:mt-2 lg:mt-[10px] active" onclick="handleClick(this)">
           All
         </li>
-        <li class="mr-[12px] mt-3 md:mt-2 lg:mt-[10px]" onclick="handleClick(this)">Technology</li>
-        <li class="mr-[12px] mt-3 md:mt-2 lg:mt-[10px]" onclick="handleClick(this)">Science</li>
-        <li class="mr-[12px] mt-3 md:mt-2 lg:mt-[10px]" onclick="handleClick(this)">Politics</li>
-        <li class=" mt-3 md:mt-2 lg:mt-[10px]" onclick="handleClick(this)">Economics</li>
+        {% for tag in tags %}
+          <li class="tag mr-[12px] mt-3 md:mt-2 lg:mt-[10px]" onclick="handleClick(this)" data-tag="{{ tag.name|lower }}">{{ tag.name }}</li>
+        {% endfor %}
       </ul>
     </div>
     <!-- BLOGS -->
     {% include 'home/blogs/blogs.html' %}
   </div>
-
-  
-
 </div>
 
-<!--JS-->
-
-<script>
-  function handleClick(element) {
-    document
-      .querySelectorAll("li")
-      .forEach((li) => li.classList.remove("active"));
-
-    element.classList.add("active");
-  }
-
-  // Mouse hover effect
-
-  const cursor = new MouseFollower({
-    container: document.body,
-    speed: 0.3,
-    innerClassName: "mf-cursor-inner",
-  });
-
-
-  //jquery
-  $( function() {
-    var availableTags = [
-    ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  } );
-</script>
+{% block js %}
+  <script src="{% static 'js/homePage.js' %}"></script>
+{% endblock js %}
 
 {% endblock content %}
