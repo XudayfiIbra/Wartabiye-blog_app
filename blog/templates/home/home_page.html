@@ -2,20 +2,13 @@
 {% load static %}
 {% block content %}
 
-<!-- CSS -->
-<style>
-  .active {
-    background-color: #484747;
-    padding-left: 6px;
-    padding-right: 6px;
-    border-radius: 10px;
-  }
-</style>
+{% block css %}
+<link rel="stylesheet" href="{% static "css/home_page.css" %}">
+{% endblock css %}
 
 <div class="h-[1664px] bg-neutral-800">
   <!-- Navbar-->
   {% include "navbar/navbar.html" %}
-
   <!-- HomePage -->
 
   <div class="mx-[30px] mt-[74px]">
@@ -40,13 +33,13 @@
       </div>
     </div>
     <!-- Filter bar -->
-    <div class="w-[370px] h-[40px] lg:h-[50px] md:w-[410px] mt-[40px] md:ml-[170px] bg-[#363639] rounded-[10px] lg:w-[510px] lg:ml-[390px] sm-custom:w-[340px] sm-custom:ml-[-10px]">
+    <div class="filter-bar py-2 ml-[5rem] lg:pb-4  mt-[40px] md:ml-[230px] bg-[#363639] rounded-[10px] lg:ml-[490px]  sm-custom:ml-7">
       <ul class="flex text-[#BEBDBD] text-[14px] md:text-[16px] sm-custom:text-[13px] font-medium cursor-pointer lg:text-[20px]">
-        <li class="mr-[12px] sm-custom:ml-2 ml-3 lg:ml-5 mt-3 md:mt-2 lg:mt-[10px] active" onclick="handleClick(this)">
+        <li class="mr-[12px] sm-custom:ml-2 ml-3   md:mt-2 active" onclick="handleClick(this)">
           All
         </li>
         {% for tag in tags %}
-          <li class="tag mr-[12px] mt-3 md:mt-2 lg:mt-[10px]" onclick="handleClick(this)" data-tag="{{ tag.name|lower }}">{{ tag.name }}</li>
+          <li class="tag mr-[12px]  md:mt-2" onclick="handleClick(this)" data-tag="{{ tag.name|lower }}">{{ tag.name }}</li>
         {% endfor %}
       </ul>
     </div>

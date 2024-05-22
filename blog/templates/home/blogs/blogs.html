@@ -1,11 +1,4 @@
   {% load static %}
-
-
-
-
-
-
-
   <!--blog-->
 
   <div class="grid grid-cols-1 lg:gap-x-5 ml-[-3px] lg:mr-[70px] md:grid-cols-2 lg:grid-cols-4">
@@ -14,7 +7,7 @@
   <!--Single blog -->
   {% for blog in blogs %}
   <div
-    class="blog w-[300px] h-[360px] ml-9 sm-custom:ml-2  bg-[#363639] rounded-[16px] mt-10 cursor-pointer" data-name="{{blogs.title|lower}}" data-tags="{{blog.tags.all|join:", "}}"
+    class="blog w-[300px] h-[360px] ml-[58px] sm-custom:ml-[-3px]  bg-[#363639] rounded-[16px] mt-10 cursor-pointer md:ml-[35px]" data-name="{{blogs.title|lower}}" data-tags="{{blog.tags.all|join:", "}}"
   >
     <img class="w-[350px] rounded-[16px] h-[170px]" src="{{blog.thumbnail}}">
 

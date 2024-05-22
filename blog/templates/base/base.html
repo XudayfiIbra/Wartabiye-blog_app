@@ -32,14 +32,9 @@
     />
     {% comment %} tailwind css tag {% endcomment %} {% tailwind_css %}
     <link rel="stylesheet" href="{% static "css/style.css" %} ">
+    {% block css %}{% endblock css %}
   </head>
   <body>
-
-    <style>
-      ::-webkit-scrollbar {
-        display: none;
-      }
-    </style>
 
     <div class="font-['inter']">{% block content %} {% endblock content %}</div>
 
