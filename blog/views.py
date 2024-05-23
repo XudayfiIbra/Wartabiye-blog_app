@@ -6,4 +6,14 @@ def home_page(request):
     tags = Tag.objects.all()
     return render(request, 'home/home_page.html', {'blogs': blog, 'tags': tags})
 
+# all blogs and with filters
+def blogs(request):
+    pass
+
+# blogs in reading mode
+def blog_detail(request, id):
+    blog_details = get_object_or_404(Blog, pk=id)
+    return render(request, 'home/blogs/blog_detail.html', {'blog_details': blog_details})
+
+
 

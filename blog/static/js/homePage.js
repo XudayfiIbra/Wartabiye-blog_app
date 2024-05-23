@@ -2,12 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchItem = document.getElementById('search-item');
     const blogs = document.querySelectorAll('.blog');
     const tags = document.querySelectorAll('.tag')
+
+
     const filterBlogs = () => {
         const searchedItem = searchItem.value.toLowerCase();
 
         blogs.forEach((blog) => {
             const blogTitle = blog.getAttribute('data-name').toLowerCase();
-            const blogMatched = blogTitle.includes(searchedItem); // Corrected this line
+            const blogMatched = blogTitle.includes(searchedItem);
+            
 
             if (blogMatched) {
                 blog.style.display = "";
@@ -25,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const BlogTag = blog.getAttribute('data-tags');
 
                 if(BlogTag.includes(selectedTag)) {
-                    blog.style.display = ''
+                    blog.style.display = '  '
                 } else {
                     blog.style.display = "none"
                 }
@@ -60,3 +63,5 @@ if (typeof cursor === 'undefined') { // Ensure cursor is declared only once
         innerClassName: "mf-cursor-inner",
     });
 }
+
+

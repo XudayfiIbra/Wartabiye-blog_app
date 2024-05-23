@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static "css/home_page.css" %}">
 {% endblock css %}
 
-<div class="h-[1664px] bg-neutral-800">
+<div class="bg-neutral-800">
   <!-- Navbar-->
   {% include "navbar/navbar.html" %}
   <!-- HomePage -->
@@ -42,7 +42,7 @@
           <li class="tag mr-[12px]  md:mt-2" onclick="handleClick(this)" data-tag="{{ tag.name|lower }}">{{ tag.name }}</li>
         {% endfor %}
       </ul>
-    </div>
+    </div> 
     <!-- BLOGS -->
     {% include 'home/blogs/blogs.html' %}
   </div>
