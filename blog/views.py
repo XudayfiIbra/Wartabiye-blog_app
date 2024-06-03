@@ -8,7 +8,8 @@ def home_page(request):
 
 # all blogs and with filters
 def blogs(request):
-    pass
+    blogs = Blog.objects.all()
+    return render(request, 'home/blogs/all_blogs.html', {'blogs':blogs})
 
 # blogs in reading mode
 def blog_detail(request, id):

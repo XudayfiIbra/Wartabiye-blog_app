@@ -1,0 +1,12 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+{% for blog_detail in blog_details %}
+
+<h1>{{blog_detail.title}}</h1>
+
+{% endfor %}
+
+{% endblock content %}
