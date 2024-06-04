@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (blogMatched) {
                 blog.style.display = "";
+                console.log('matched');
             } else {
                 blog.style.display = "none";
+                console.log('not matched');
             }
         });
     };
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const BlogTag = blog.getAttribute('data-tags');
 
                 if(BlogTag.includes(selectedTag)) {
-                    blog.style.display = '  '
+                    blog.style.display = ''
                 } else {
                     blog.style.display = "none"
                 }

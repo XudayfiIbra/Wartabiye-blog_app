@@ -13,8 +13,8 @@ def blogs(request):
 
 # blogs in reading mode
 def blog_detail(request, id):
-    blog_details = get_object_or_404(Blog, pk=id)
-    return render(request, 'home/blogs/blog_detail.html', {'blog_details': blog_details})
+    blog_details = Blog.objects.get(pk=id)
+    return render(request, 'home/blogs/blog_details.html', {'blog_details': blog_details})
 
 
 

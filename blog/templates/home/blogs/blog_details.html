@@ -1,12 +1,42 @@
-{% extends "base/base.html" %}
-{% load static %}
-{% block css %}{% endblock css %}
-
+{% extends "base/base.html" %} {% load static %} {% block css %} <link
+rel="stylesheet" href="{% static "css/blog_reading.css" %}"> {% endblock css %}
 {% block content %}
-{% for blog_detail in blog_details %}
 
-<h1>{{blog_detail.title}}</h1>
-
-{% endfor %}
+{% comment %} <div class="bg-neutral-800 flex flex-col hight-content justify-center items-center">
+  <!--image-->
+  <img
+    class=" mt-4 rounded"
+    src="{{blog_details.thumbnail.url}}"
+    alt=""
+  />
+  <!--title-->
+  <h1 class="text-white text-[30px] font-bold mt-4 lg:w-[600px]">{{blog_details.title}}</h1>
+  <!--content-->
+  <p class="text-white text-[20px] w-[600px] mt-4">{{blog_details.content}}</p>
+  <div class="flex mt-4 items-center justify-between">
+    <!--author-->
+    <p class="text-white text-[18px] mr-[390px]">{{blog_details.author|upper}}</p>
+    <!--date and other information-->
+    <p class="text-white">{{blog_details.created_at|timesince}}</p>
+  </div>
+</div> {% endcomment %}
+<div class="bg-neutral-800 flex flex-col hight-content justify-center items-center">
+  <!--image-->
+  <img
+    class="w-[350px] h-[200px] md:w-[500px] md:h-[300px] lg:w-[600px] lg:h-[400px] mt-4 rounded"
+    src="{{blog_details.thumbnail.url}}"
+    alt=""
+  />
+  <!--title-->
+  <h1 class="text-white text-[30px] font-bold mt-4 w-[350px] md:w-[500px] lg:w-[600px]">{{blog_details.title}}</h1>
+  <!--content-->
+  <p class="text-white text-[20px] w-[350px] md:w-[500px] lg:w-[600px] mt-4">{{blog_details.content}}</p>
+  <div class="flex mt-4 items-center justify-between">
+    <!--author-->
+    <p class="text-white text-[18px] mr-[140px] md:mr-[290px] lg:mr-[390px]">{{blog_details.author|upper}}</p>
+    <!--date and other information-->
+    <p class="text-white">{{blog_details.created_at|timesince}}</p>
+  </div>
+</div>
 
 {% endblock content %}
