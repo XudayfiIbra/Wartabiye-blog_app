@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from . models import Blog, Tag
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+
 
 def home_page(request):
     blog = Blog.objects.all()
