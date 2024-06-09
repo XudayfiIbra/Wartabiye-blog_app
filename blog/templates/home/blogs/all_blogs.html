@@ -1,10 +1,63 @@
 {% extends "base/base.html" %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static "css/all_blogs.css" %}">
+{% endblock css %}
+
 
 {% block content %}
-{% for blog in blogs %}
-<h1>{{blog.title}}</h1>
+<!-- Navbar-->
+{% include "navbar/navbar.html" %}
 
-{% endfor %}
+<div class="grid h-screen mx-[32px] md:mx-[64px] lg:mx-[60px]">
+    <!--filter container -->
+    <div class="w-fit col-span-1 h-10 mt-10 rounded-lg bg-[#363639]">
+        <ul class="flex items-center w-fit-content mt-2 text-white cursor-pointer font-medium">    
+            <li class="ml-[10px] active" onclick="handleClick(this)">All</li>
+            {% for tag in tags %}
+            <li class="tag ml-2 mr-2" onclick="handleClick(this)"  data-tag="{{ tag.name|lower }}" >{{ tag.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!--blog container -->
+    <div class="grid grid-cols-1 gap-4 h-[400px] md:grid-cols-2 mt-[-60px] md:mt-[-40px] lg:mt-[-120px] lg:grid-cols-4">
+        {% for blog in blogs %}
+            <div class="blog h-fit bg-[#363639] rounded-[16px] cursor-pointer" data-name="{{ blog.title|lower }}" data-tags="{{ blog.tags.all|join:", " }}">
+                <a href="{% url "blog_reading" blog.id %}">
+                    <img class="w-fit-content rounded-[16px] h-[170px]" src="{{ blog.thumbnail }}">
+                    <div class="mt-4 mx-[15px]">
+                        <!-- Title -->
+                        <h1 class="text-white font-bold text-[16px]">
+                            {{ blog.title }}
+                        </h1>
+                        <!-- Description -->
+                        <p class="text-white whitespace-normal break-words font-light mt-2 text-[14px]">
+                            {{ blog.content|truncatewords:8 }} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
+                        </p>
+                    </div>
+                </a>
+                <!-- Information -->
+                <div class="flex justify-between items-center mx-[15px] mt-6 h-10">
+                    <div class="flex justify-between items-center">
+                        <p class="text-white font-light text-[10px] ml-2 mt-[-8px]">
+                            {{ blog.author|upper }}
+                        </p>
+                    </div>
+                    <p class="text-white font-light text-[10px] mt-[-8px]">{{ blog.created_at|timesince }} ago</p>
+                </div>
+            </div>
+            {% endfor %} 
+  
+    </div>
+  </div>
+  
+{% block js %}
+<script src="{% static "js/all_blogs.js" %}"></script>
+
+{% endblock js %}
+  
 {% endblock content %}
+
+
+

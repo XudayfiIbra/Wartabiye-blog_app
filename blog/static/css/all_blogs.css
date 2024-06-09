@@ -1,0 +1,11 @@
+.w-fit-content {
+    width: fit-content;
+}
+
+.active {
+    background-color: #848486;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 10px;
+    transition: .2s linear;
+}
