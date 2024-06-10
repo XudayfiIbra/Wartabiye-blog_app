@@ -8,7 +8,10 @@ urlpatterns = [
     path('blog-reading/<int:id>', views.blog_detail, name='blog_reading'),
     path('blogs', views.blogs, name="blogs"),
     path('login', views.user_login, name='login'),
-    path('logout', views.user_logout, name='logout')
+    path('logout', views.user_logout, name='logout'),
+    path('delete-blog/<int:id>', views.delete_blog, name='delete_blog'),
+    path('my-blogs', views.user_blogs, name="user_blogs"),
+    path('add-blog', views.add_blog, name="new_blog")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

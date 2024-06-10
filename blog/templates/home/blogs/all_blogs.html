@@ -25,7 +25,7 @@
         {% for blog in blogs %}
             <div class="blog h-fit bg-[#363639] rounded-[16px] cursor-pointer" data-name="{{ blog.title|lower }}" data-tags="{{ blog.tags.all|join:", " }}">
                 <a href="{% url "blog_reading" blog.id %}">
-                    <img class="w-fit-content rounded-[16px] h-[170px]" src="{{ blog.thumbnail }}">
+                    <img class="w-fit rounded-[16px] h-[170px]" src="{{ blog.thumbnail }}">
                     <div class="mt-4 mx-[15px]">
                         <!-- Title -->
                         <h1 class="text-white font-bold text-[16px]">

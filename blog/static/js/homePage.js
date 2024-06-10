@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchItem = document.getElementById('search-item');
     const blogs = document.querySelectorAll('.blog');
+    const home = document.getElementById('home')
     const tags = document.querySelectorAll('.tag')
-
+    let hasVisible = false;
 
     const filterBlogs = () => {
         const searchedItem = searchItem.value.toLowerCase();
@@ -14,10 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (blogMatched) {
                 blog.style.display = "";
-                console.log('matched');
+                
             } else {
                 blog.style.display = "none";
-                console.log('not matched');
+                home.style.height = "100vh";
+                console.log('is not matched');
             }
         });
     };

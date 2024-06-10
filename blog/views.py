@@ -32,8 +32,21 @@ def blogs(request):
     tags = Tag.objects.all()
     return render(request, 'home/blogs/all_blogs.html', {'blogs':blogs, 'tags': tags})
 
+def delete_blog(request, id):
+    blog = Blog.objects.get(pk=id)
+    blog.delete()
+    return redirect('blogs')
+
 # blogs in reading mode
 def blog_detail(request, id):
     blog_details = Blog.objects.get(pk=id)
     return render(request, 'home/blogs/blog_details.html', {'blog_details': blog_details})
 
+@login_required
+def user_blogs(request):
+    blogs = Blog.objects.filter(author=request.user)
+    return render(request, 'home/blogs/user_blogs.html', {'blogs': blogs})
+
+
+def add_blog(request):
+    return render(request, 'home/blogs/new_blog.html')

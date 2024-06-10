@@ -2,8 +2,9 @@
 rel="stylesheet" href="{% static "css/blog_reading.css" %}"> {% endblock css %}
 {% block content %}
 
-
-<div class="bg-neutral-800 flex flex-col hight-content justify-center items-center">
+<div
+  class="bg-neutral-800 flex flex-col hight-content justify-center items-center"
+>
   <!--image-->
   <img
     class="w-[350px] h-[200px] md:w-[600px] md:h-[300px] lg:w-[800px] lg:h-[400px] mt-4 rounded"
@@ -11,14 +12,59 @@ rel="stylesheet" href="{% static "css/blog_reading.css" %}"> {% endblock css %}
     alt=""
   />
   <!--title-->
-  <h1 class="text-white text-[30px] font-bold mt-4 w-[350px] md:w-[600px] lg:w-[800px]">{{blog_details.title}}</h1>
+  <h1
+    class="text-white text-[30px] font-bold mt-4 w-[350px] md:w-[600px] lg:w-[800px]"
+  >
+    {{blog_details.title}}
+  </h1>
   <!--content-->
-  <p class="text-white text-[20px] w-[350px] md:w-[600px] lg:w-[800px] mt-4">{{blog_details.content}}</p>
-  <div class="ml-[-80px] lg:ml-[-380px] md:ml-[-180px] flex flex-col mt-4 mb-4">
-    <!--author-->
-    <p class="text-white font-bold text-[18px] mr-[140px] md:mr-[290px]">Author: {{blog_details.author|upper}}</p>
-    <!--date and other information-->
-    <p class="text-white">{{blog_details.created_at|timesince}}</p>
+  <p class="text-white text-[20px] w-[350px] md:w-[600px] lg:w-[800px] mt-4">
+    {{blog_details.content}}
+  </p>
+  <div class="w-[350px] md:w-[600px] lg:w-[800px] my-4 flex flex-col md:flex-row md:justify-between md:items-center">
+    <!--user info-->
+    <div>
+      <!--author-->
+      <p class="text-white font-bold text-[18px]">
+        Author: {{blog_details.author|upper}}
+      </p>
+      <!--date and other information-->
+      <p class="text-white">{{blog_details.created_at|timesince}}</p>
+    </div>
+    <!-- Action buttons -->
+    {% if user.is_authenticated and user.is_superuser %}
+      <div class="mt-4 md:mt-0 flex justify-end">
+        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="bg-red-500 rounded-lg p-2 text-white text-center hover:bg-red-600 transition duration-[0.3s]" type="button">
+          Delete
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<!--pop-up Model for delete button-->
+<div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative p-4 w-full max-w-md max-h-full">
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+              </svg>
+              <span class="sr-only">Close modal</span>
+          </button>
+          <div class="p-4 md:p-5 text-center">
+              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+              </svg>
+              <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
+              <a href="{% url "delete_blog" blog_details.id %}">
+                <button data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                    Yes, I'm sure
+                </button>
+              </a>
+              <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+          </div>
+      </div>
   </div>
 </div>
 
