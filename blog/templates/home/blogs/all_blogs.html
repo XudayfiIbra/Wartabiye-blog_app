@@ -21,7 +21,7 @@
         </ul>
     </div>
     <!--blog container -->
-    <div class="grid grid-cols-1 gap-4 h-[400px] md:grid-cols-2 mt-[-60px] md:mt-[-40px] lg:mt-[-120px] lg:grid-cols-4">
+    <div class=" grid grid-cols-1 gap-4 h-[400px] md:grid-cols-2 mt-[-60px] md:mt-[-40px] lg:mt-[-70px] lg:grid-cols-4">
         {% for blog in blogs %}
             <div class="blog h-fit bg-[#363639] rounded-[16px] cursor-pointer" data-name="{{ blog.title|lower }}" data-tags="{{ blog.tags.all|join:", " }}">
                 <a href="{% url "blog_reading" blog.id %}">
@@ -33,7 +33,7 @@
                         </h1>
                         <!-- Description -->
                         <p class="text-white whitespace-normal break-words font-light mt-2 text-[14px]">
-                            {{ blog.content|truncatewords:8 }} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
+                            {{ blog.description|truncatewords:8|safe }} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
                         </p>
                     </div>
                 </a>

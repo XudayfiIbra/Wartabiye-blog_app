@@ -15,16 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (blogMatched) {
                 blog.style.display = "";
-                hasVisible = true
-                console.log('hi');
+                
             } else {
                 blog.style.display = "none";
+                home.style.height = "100vh";
+                console.log('is not matched');
             }
         });
-        if(!hasVisible) {
-            home.style.height = "100vh"
-            console.log('hello');
-        }
     };
 
     tags.forEach((tag) => {
@@ -38,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     blog.style.display = ''
                 } else {
                     blog.style.display = "none"
-                    home.style.height = "100vh"
                 }
             })
         })

@@ -43,10 +43,32 @@ def blog_detail(request, id):
     return render(request, 'home/blogs/blog_details.html', {'blog_details': blog_details})
 
 @login_required
+# user blogs
 def user_blogs(request):
     blogs = Blog.objects.filter(author=request.user)
     return render(request, 'home/blogs/user_blogs.html', {'blogs': blogs})
 
-
+# add blog
 def add_blog(request):
-    return render(request, 'home/blogs/new_blog.html')
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            title = request.POST['title']
+            description = request.POST['description']
+            content = request.POST['content']
+            thumbnail = request.FILES['thumbnail']
+            tags = request.POST.getlist('tags')
+            
+            # create blog
+            blog = Blog.objects.create(
+                title=title,
+                description=description,
+                content=content,
+                thumbnail=thumbnail,
+                author=request.user,
+            )
+            # save tag
+            blog.tags.set(tags)
+            return redirect('home_page')
+
+    tags = Tag.objects.all()
+    return render(request, 'home/blogs/new_blog.html', {'tags': tags})

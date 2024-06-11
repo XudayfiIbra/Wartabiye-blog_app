@@ -15,6 +15,7 @@ class Tag(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=400)
     content = models.TextField(unique=True)
+    description = models.CharField(max_length=60, default="This Blog does not have description")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     thumbnail = models.ImageField(upload_to='blog/thumbnail')
