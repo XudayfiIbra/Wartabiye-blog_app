@@ -51,13 +51,13 @@ Start the django server
 
 ## Screenshots
 <p>
-  <img src="https://placehold.co/400" alt="Light Mode 1" width="45%" style="display:inline-block; margin-right: 10px;">
-  <img src="https://placehold.co/400" alt="Light Mode 2" width="45%" style="display:inline-block;">
+  <img src="Screenshots/wartabiye 1.png" alt="Wartabiye" width="45%" style="display:inline-block; margin-right: 10px;">
+  <img src="Screenshots/wartabiye 2.png" alt="Wartabiye" width="45%" style="display:inline-block;">
 </p>
 
 <p>
-  <img src="https://placehold.co/400" alt="Dark Mode 1" width="45%" style="display:inline-block; margin-right: 10px;">
-  <img src="https://placehold.co/400" alt="Dark Mode 2" width="45%" style="display:inline-block;">
+  <img src="Screenshots/wartabiye 3.png" alt="Wartabiye" width="45%" style="display:inline-block; margin-right: 10px;">
+  <img src="Screenshots/wartabiye 4.png" alt="Wartabiye" width="45%" style="display:inline-block;">
 </p>
 
 
