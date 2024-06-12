@@ -49,6 +49,18 @@ Start the django server
 - **Database Management**: Utilizes SQLite for efficient data storage and retrieval.
 
 
+## Screenshots
+<p>
+  <img src="https://placehold.co/400" alt="Light Mode 1" width="45%" style="display:inline-block; margin-right: 10px;">
+  <img src="https://placehold.co/400" alt="Light Mode 2" width="45%" style="display:inline-block;">
+</p>
+
+<p>
+  <img src="https://placehold.co/400" alt="Dark Mode 1" width="45%" style="display:inline-block; margin-right: 10px;">
+  <img src="https://placehold.co/400" alt="Dark Mode 2" width="45%" style="display:inline-block;">
+</p>
+
+
 ## 🔗 Communication
 - [Whatsapp group](https://chat.whatsapp.com/LjikMfVE3JG8tLw2ZWe6hT)
 - Slack channel: #wartabiye-blog_app
