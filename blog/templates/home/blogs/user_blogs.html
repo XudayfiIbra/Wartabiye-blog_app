@@ -36,12 +36,14 @@
     <!--Infomaton-->
     <div class="flex justify-between items-center mx-[15px] mt-6 h-10">
       <div class="flex justify-between items-center">
-        <button class="text-white mt-[-8px] bg-green-600 px-2 py-1 rounded-lg">
-          <span class="mr-2"><i class="fa-regular fa-pen-to-square"></i></span>update
-        </button>
+        <a href="{% url "update_blog" blog.id %}">
+          <button class="text-white mt-[-8px] bg-green-600 px-2 py-1 rounded-lg">
+            <span class="mr-2"><i class="fa-regular fa-pen-to-square"></i></span>update
+          </button>
+       </a>
       </div>
      {% if user.is_authenticated and not user.is_superuser %}
-      <button  class="mt-[-8px] text-white bg-red-600 px-2 py-1 rounded-lg" data-modal-target="popup-modal" data-modal-toggle="popup-modal">
+      <button  class="mt-[-2px] text-white bg-red-600 px-2 py-1 rounded-lg" data-modal-target="popup-modal" data-modal-toggle="popup-modal">
           <span class="mr-1">
               <i class="fa-regular fa-trash-can"></i>
           </span>

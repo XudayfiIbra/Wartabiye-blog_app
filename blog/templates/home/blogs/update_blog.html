@@ -1,0 +1,78 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div class="h-fit">
+    <!-- Navbar-->
+    {% include "navbar/navbar.html" %}
+    <!-- component -->
+    <section class="mx-auto mt-5 max-w-4xl rounded-md p-6 shadow-md">
+      <h1 class="text-2xl font-bold text-white">Update blog</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div>
+            <label class="text-white" for="title">Title</label>
+            <input
+              name="title"
+              id="title"
+              type="text"
+              class="block w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-0"
+              value="{{ blog.title }}"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white">
+              Thumbnail
+            </label>
+            <input
+              class="mt-1 flex w-full cursor-pointer justify-center rounded-lg border-2 border-dashed border-white pl-8 text-sm text-white"
+              id="file_input" name="thumbnail"
+              type="file"
+            />
+          </div>
+          <div>
+            <label class="text-white">Description</label>
+            <input
+              name="description"
+              id="description"
+              type="text"
+              class="mt-2 block w-full rounded-md border border-gray-300 bg-white px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-0"
+              value="{{ blog.description }}"
+            />
+          </div>
+  
+          <!-- Dropdown here-->
+          <div class="">
+            <label for="tags" class="mb-2 text-white block text-sm font-medium">Which category</label>
+            <select
+              id="tags"
+              name="tags"
+              class="block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm"
+              
+            >
+              {% for tag in tags %}
+                <option value="{{ tag.id }}" {% if tag in blog.tags.all %}selected{% endif %}>{{ tag.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="mt-4">
+          <label class="text-white" for="content">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            rows="10"
+            class="mt-2 block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring"
+            placeholder="Your idea goes here"
+          >{{ blog.content }}</textarea>
+        </div>
+  
+        <div class="mt-6 flex justify-end">
+          <button class="transform rounded-md bg-green-600 px-6 py-2 leading-5 text-white transition-colors duration-200 hover:bg-green-700 focus:bg-gray-600 focus:outline-none">
+            Update
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+{% endblock content %}

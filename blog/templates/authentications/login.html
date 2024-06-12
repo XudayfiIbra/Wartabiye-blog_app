@@ -1,11 +1,8 @@
 {% extends "base/base.html" %}
-
+{% load static %}
 {% block content %}
-
+{% comment %} 
 <h1>Login</h1>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <label for="username">Username:</label>
@@ -13,5 +10,67 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br>
         <button type="submit">Login</button>
-    </form>
+    </form>  {% endcomment %}
+
+    <div class="text-white ">
+        <div class="min-h-screen flex flex-col items-center justify-center">
+          <div class="grid md:grid-cols-2 items-center gap-4 max-w-6xl w-full p-4 m-4   rounded-md">
+            <div class="md:max-w-md w-full sm:px-6 py-4">
+              <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="mb-12">
+                  <h3 class="text-3xl font-extrabold">Login</h3>
+                  <p class="text-sm mt-4 ">If you don't have an account <a href="javascript:void(0);" class="text-blue-500 font-semibold hover:underline ml-1 whitespace-nowrap">Signup here</a></p>
+                </div>
+                <div>
+                  <label class="text-xs block mb-2">Username</label>
+                  <div class="relative flex items-center">
+                    <input name="username" id="username" type="text" required class="w-full text-sm border-b border-gray-300 text-black focus:border-[#333] px-2 py-3 outline-none" placeholder="Enter email" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px] absolute right-2 cursor-pointer " viewBox="0 0 448 512"><path fill=" #900C3F " d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                  </div>
+                </div>
+                <div class="mt-8">
+                  <label class="text-xs block mb-2">Password</label>
+                  <div class="relative flex items-center">
+                    <input name="password" id="password" type="password" required class="w-full text-sm border-b text-black border-gray-300 focus:border-[#333] px-2 py-3 outline-none" placeholder="Enter password" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#900C3F" stroke="#bbb" class="w-[18px] h-[18px] absolute right-2 cursor-pointer" viewBox="0 0 128 128">
+                      <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between gap-2 mt-5">
+                  <div class="flex items-center">
+                    <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+                    <label for="remember-me" class="ml-3 block text-sm">
+                      Remember me
+                    </label>
+                  </div>
+                  <div>
+                    <a href="jajvascript:void(0);" class="text-blue-500 font-semibold text-sm hover:underline">
+                      Forgot Password?
+                    </a>
+                  </div>
+                </div>
+                <div class="mt-12">
+                  <button type="submit" class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                    Login
+                  </button>
+                </div>
+                <p class="my-8 text-sm text-gray-400 text-center">or continue with</p>
+                <div class="space-x-8 flex justify-center">
+                  <button type="button"
+                    class="border-2 border-white border-dashed px-4 py-1 rounded-lg ">
+                    <i class="fa-brands fa-google"></i>
+                    <span class="ml-1">Google</span>
+                  </button>
+                 
+                </div>
+              </form>
+            </div>
+            <div class="md:h-full max-md:mt-10 rounded-xl lg:p-12 p-8">
+              <img src="{% static "assets/images/auth/login.png" %}" class="w-full h-full object-contain " alt="login-image" />
+            </div>
+          </div>
+        </div>
+      </div>
 {% endblock content %}

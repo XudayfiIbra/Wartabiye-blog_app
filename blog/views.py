@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from . models import Blog, Tag
 from django.contrib.auth import login as user_auth_login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 def user_login(request):
     if request.method == 'POST':
@@ -31,7 +31,7 @@ def blogs(request):
     blogs = Blog.objects.all()
     tags = Tag.objects.all()
     return render(request, 'home/blogs/all_blogs.html', {'blogs':blogs, 'tags': tags})
-
+@login_required
 def delete_blog(request, id):
     blog = Blog.objects.get(pk=id)
     blog.delete()
@@ -49,6 +49,7 @@ def user_blogs(request):
     return render(request, 'home/blogs/user_blogs.html', {'blogs': blogs})
 
 # add blog
+@login_required
 def add_blog(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
@@ -72,3 +73,29 @@ def add_blog(request):
 
     tags = Tag.objects.all()
     return render(request, 'home/blogs/new_blog.html', {'tags': tags})
+
+
+@login_required
+def update_blog(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id)
+
+    if request.method == 'POST':
+        if request.user.is_authenticated and request.user == blog.author:
+            title = request.POST['title']
+            description = request.POST['description']
+            content = request.POST['content']
+            tags = request.POST.getlist('tags')
+
+            blog.title = title
+            blog.description = description
+            blog.content = content
+            
+            if 'thumbnail' in request.FILES:
+                blog.thumbnail = request.FILES['thumbnail']
+
+            blog.tags.set(tags)
+            blog.save()
+            return redirect('home_page')
+    
+    tags = Tag.objects.all()
+    return render(request, 'home/blogs/update_blog.html', {'blog': blog, 'tags': tags})

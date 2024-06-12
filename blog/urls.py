@@ -11,7 +11,8 @@ urlpatterns = [
     path('logout', views.user_logout, name='logout'),
     path('delete-blog/<int:id>', views.delete_blog, name='delete_blog'),
     path('my-blogs', views.user_blogs, name="user_blogs"),
-    path('add-blog', views.add_blog, name="new_blog")
+    path('add-blog', views.add_blog, name="new_blog"),
+    path('update-blog/<int:blog_id>', views.update_blog, name="update_blog"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
