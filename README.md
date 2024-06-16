@@ -41,12 +41,13 @@ Start the django server
     
 ## Features we need to achive
 
-- **User Authentication**: Secure user registration and login functionality.
-- **Blog Management**: Create, edit, and delete blog posts with ease.
+- **User Authentication**: Done.
+- **Blog Management**: Done.
 - **Comment System**: Enable readers to engage with posts through comments.
 - **Responsive Design**: Ensures optimal viewing experience across devices.
-- **Customizable UI**: Tailwind CSS integration allows for easy styling modifications.
-- **Database Management**: Utilizes SQLite for efficient data storage and retrieval.
+- **Customizable UI**: Done.
+- **Database Management**: Done.
+- **Autheritions**: Done.
 
 
 ## Screenshots
