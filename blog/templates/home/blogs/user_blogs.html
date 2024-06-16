@@ -29,7 +29,7 @@
       </h1>
       <!--Description-->
       <p class="text-white whitespace-normal break-words font-light mt-2 text-[14px]">
-        {{blog.description|truncatewords:8|safe}} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
+        {{blog.description|truncatewords:10|safe}} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
       </p>
     </div>
   </a>
@@ -43,7 +43,7 @@
        </a>
       </div>
      {% if user.is_authenticated and not user.is_superuser %}
-      <button  class="mt-[-2px] text-white bg-red-600 px-2 py-1 rounded-lg" data-modal-target="popup-modal" data-modal-toggle="popup-modal">
+      <button class="mt-[-2px] text-white bg-red-600 px-2 py-1 rounded-lg" data-modal-target="popup-modal" data-modal-toggle="popup-modal">
           <span class="mr-1">
               <i class="fa-regular fa-trash-can"></i>
           </span>
@@ -75,6 +75,7 @@
                 </svg>
                 <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
                 {% for blog in blogs %}
+                <div class="flex items-center justify-center">
                 <form action="{% url 'delete_blog' blog.id %}" method="post">
                     {% csrf_token %}
                   <button type="submit" data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
@@ -83,6 +84,7 @@
                 </form>
                 {% endfor %}
                 <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+              </div>
             </div>
         </div>
     </div>

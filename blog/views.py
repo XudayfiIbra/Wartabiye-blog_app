@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from . models import Blog, Tag
+from . forms import UserSignupForm
 from django.contrib.auth import login as user_auth_login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -99,3 +100,21 @@ def update_blog(request, blog_id):
     
     tags = Tag.objects.all()
     return render(request, 'home/blogs/update_blog.html', {'blog': blog, 'tags': tags})
+
+
+
+def registration(request):
+    if request.method == 'POST':
+        form = UserSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            user_auth_login(request, user)
+            return redirect('home_page')
+    else:
+        form = UserSignupForm()
+        
+    return render(request, 'authentications/signup.html', {'form':form})

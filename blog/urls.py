@@ -13,6 +13,7 @@ urlpatterns = [
     path('my-blogs', views.user_blogs, name="user_blogs"),
     path('add-blog', views.add_blog, name="new_blog"),
     path('update-blog/<int:blog_id>', views.update_blog, name="update_blog"),
+    path('signup', views.registration, name='signup')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

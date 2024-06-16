@@ -7,13 +7,13 @@
 
   <!--blog-->
 
-  <div class="grid grid-cols-1 lg:gap-x-5 ml-[-3px] lg:mr-[70px] md:grid-cols-2 lg:grid-cols-4 ">
+  <div class="grid grid-cols-1 lg:gap-x-5 ml-[25px] lg:mr-[70px] md:grid-cols-2 lg:grid-cols-4 ">
 
   <!--Single blog -->
   {% for blog in blogs %}
   
   <div
-    class="blog fit ml-[58px] sm-custom:ml-[-3px]  bg-[#363639] rounded-[16px] mt-10 cursor-pointer md:ml-[35px]" data-name="{{blog.title|lower}}" data-tags="{{blog.tags.all|join:", "}}"
+    class="blog fit mr-[20px] sm-custom:ml-[-3px]  bg-[#363639] rounded-[16px] mt-10 cursor-pointer md:ml-[35px]" data-name="{{blog.title|lower}}" data-tags="{{blog.tags.all|join:", "}}"
   >
   <a href="{% url "blog_reading" blog.id %}">
     <img class="w-fit rounded-[16px] h-[170px]" src="{{blog.thumbnail}}">
@@ -25,7 +25,7 @@
       </h1>
       <!--Description-->
       <p class="text-white whitespace-normal break-words font-light mt-2 text-[14px]">
-        {{blog.description|truncatewords:8|safe}} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
+        {{blog.description|truncatewords:10|safe}} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
       </p>
     </div>
   </a>

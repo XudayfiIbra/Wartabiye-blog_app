@@ -1,0 +1,41 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="h-screen  flex items-center justify-center bg-neutral-800">
+    <div class="mt-[-170px] lg:mt-[-100px] p-8 rounded-lg shadow-lg w-full max-w-2xl">
+        <h1 class="text-white font-bold text-3xl mb-6">Signup</h1>
+        <form method="POST" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.first_name.id_for_label }}" class="block text-gray-300">First Name</label>
+                {{ form.first_name }}
+            </div>
+            <div>
+                <label for="{{ form.last_name.id_for_label }}" class="block text-gray-300">Last Name</label>
+                {{ form.last_name }}
+            </div>
+            <div>
+                <label for="{{ form.email.id_for_label }}" class="block text-gray-300">Email</label>
+                {{ form.email }}
+            </div>
+            <div>
+                <label for="{{ form.username.id_for_label }}" class="block text-gray-300">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="sm:col-span-2">
+                <label for="{{ form.password1.id_for_label }}" class="block text-gray-300">Password</label>
+                {{ form.password1 }}
+            </div>
+            <div class="sm:col-span-2">
+                <label for="{{ form.password2.id_for_label }}" class="block text-gray-300">Confirm Password</label>
+                {{ form.password2 }}
+            </div>
+            <div class="sm:col-span-2">
+                <input class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none" type="submit" value="Signup">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

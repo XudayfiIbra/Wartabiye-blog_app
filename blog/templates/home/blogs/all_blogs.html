@@ -33,7 +33,7 @@
                         </h1>
                         <!-- Description -->
                         <p class="text-white whitespace-normal break-words font-light mt-2 text-[14px]">
-                            {{ blog.description|truncatewords:8|safe }} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
+                            {{ blog.description|truncatewords:10|safe }} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
                         </p>
                     </div>
                 </a>

@@ -20,7 +20,7 @@
                 {% csrf_token %}
                 <div class="mb-12">
                   <h3 class="text-3xl font-extrabold">Login</h3>
-                  <p class="text-sm mt-4 ">If you don't have an account <a href="javascript:void(0);" class="text-blue-500 font-semibold hover:underline ml-1 whitespace-nowrap">Signup here</a></p>
+                  <p class="text-sm mt-4 ">If you don't have an account <a href="{% url "signup" %}" class="text-blue-500 font-semibold hover:underline ml-1 whitespace-nowrap">Signup here</a></p>
                 </div>
                 <div>
                   <label class="text-xs block mb-2">Username</label>
