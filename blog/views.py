@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from . models import Blog, Tag
-from . forms import UserSignupForm
+from .models import Blog, Tag, Comments
+from .forms import UserSignupForm, CommentForm
 from django.contrib.auth import login as user_auth_login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -27,29 +27,43 @@ def home_page(request):
     tags = Tag.objects.all()
     return render(request, 'home/home_page.html', {'blogs': blog, 'tags': tags})
 
-# all blogs and with filters
 def blogs(request):
     blogs = Blog.objects.all()
     tags = Tag.objects.all()
-    return render(request, 'home/blogs/all_blogs.html', {'blogs':blogs, 'tags': tags})
+    return render(request, 'home/blogs/all_blogs.html', {'blogs': blogs, 'tags': tags})
+
 @login_required
 def delete_blog(request, id):
     blog = Blog.objects.get(pk=id)
     blog.delete()
     return redirect('blogs')
 
-# blogs in reading mode
 def blog_detail(request, id):
-    blog_details = Blog.objects.get(pk=id)
-    return render(request, 'home/blogs/blog_details.html', {'blog_details': blog_details})
+    blog_details = get_object_or_404(Blog, pk=id)
+    comments = Comments.objects.filter(blog=blog_details)
+    number_of_comments = comments.count()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.blog = blog_details
+            comment.save()
+            return redirect('blog_reading', id=blog_details.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'home/blogs/blog_details.html', {
+        'blog_details': blog_details,
+        'comments': comments,
+        'form': form,
+        'number_of_comments':number_of_comments
+    })
 
 @login_required
-# user blogs
 def user_blogs(request):
     blogs = Blog.objects.filter(author=request.user)
     return render(request, 'home/blogs/user_blogs.html', {'blogs': blogs})
 
-# add blog
 @login_required
 def add_blog(request):
     if request.method == 'POST':
@@ -60,7 +74,6 @@ def add_blog(request):
             thumbnail = request.FILES['thumbnail']
             tags = request.POST.getlist('tags')
             
-            # create blog
             blog = Blog.objects.create(
                 title=title,
                 description=description,
@@ -68,13 +81,11 @@ def add_blog(request):
                 thumbnail=thumbnail,
                 author=request.user,
             )
-            # save tag
             blog.tags.set(tags)
             return redirect('home_page')
 
     tags = Tag.objects.all()
     return render(request, 'home/blogs/new_blog.html', {'tags': tags})
-
 
 @login_required
 def update_blog(request, blog_id):
@@ -101,8 +112,6 @@ def update_blog(request, blog_id):
     tags = Tag.objects.all()
     return render(request, 'home/blogs/update_blog.html', {'blog': blog, 'tags': tags})
 
-
-
 def registration(request):
     if request.method == 'POST':
         form = UserSignupForm(request.POST)
@@ -110,11 +119,11 @@ def registration(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            user_auth_login(request, user)
-            return redirect('home_page')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                user_auth_login(request, user)
+                return redirect('home_page')
     else:
         form = UserSignupForm()
-        
-    return render(request, 'authentications/signup.html', {'form':form})
+    
+    return render(request, 'authentications/signup.html', {'form': form})

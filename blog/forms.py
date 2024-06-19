@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from . models import Comments
 
 class UserSignupForm(UserCreationForm):
     first_name = forms.CharField(required=True, max_length=50, widget=forms.TextInput(attrs={
@@ -27,3 +28,9 @@ class UserSignupForm(UserCreationForm):
         'class': 'form-input w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500',
         'placeholder': 'Confirm Password'
     }))
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = ['content']
