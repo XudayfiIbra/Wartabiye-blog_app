@@ -1,4 +1,4 @@
-# Wartabiye blog_app V 0.0
+# Wartabiye blog_app V 0.1
 The "Wartabiye Blog App" is an open-source project built on Django 4.2, Tailwind CSS 3.4, and SQLite, designed to simplify the creation and management of blogs. With a focus on ease of use and customization, this app provides a robust platform for bloggers to showcase their content and every django, tailwindcss and javaScript developer can contribute.
 
 
