@@ -35,9 +35,12 @@
     <h2 class="text-white text-[25px] font-bold">Comments ({{number_of_comments}})</h2>
     <ul>
       {% for comment in comments %}
-        <li class="text-white mt-2">
-          <p><strong>{{ comment.author.username }}</strong></p>
-          <p>{{ comment.content }}</p>
+        <li class="bg-neutral-600 h-fit w-1/2 rounded-2xl mx-7 my-2">
+          <div class="mx-3">
+            <h1 class="text-white text-[20px] mt-2 font-bold">{{ comment.author.username }}</h1>
+            <p class="text-white/90 mb-1">{{ comment.content }}</p>
+            <p class="text-white/70 text-[12px] text-end my-4">{{comment.created_at|timesince}} ago</p>
+          </div>
         </li>
       {% empty %}
         <li class="text-white mt-2">No comments yet. Be the first to comment!</li>
@@ -46,8 +49,9 @@
   </div>
 
   <!--Comment form-->
-  <div class=" w-[350px] md:w-[600px] lg:w-[800px] mt-10">
-    <h2 class="text-white text-[25px] font-bold">Add a Comment</h2>
+  {% if user.is_authenticated %}
+  <div class="w-[350px] md:w-[600px] lg:w-[800px] mt-10">
+    <h2 class="text-white text-[25px] font-bold">Comment</h2>
     <form method="POST">
       {% csrf_token %}
       <div class="mb-3 mt-2">
@@ -56,6 +60,7 @@
       <button type="submit" class="w-[100px] mb-5 bg-blue-500 rounded-lg p-2 text-white text-center hover:bg-blue-600 transition duration-[0.3s]">Submit</button>
     </form>
   </div>
+  {% endif %}
 </div>
 
 <!--pop-up Model for delete button-->
