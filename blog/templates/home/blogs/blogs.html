@@ -1,48 +1,37 @@
-  {% load static %}
+{% load static %}
 
-  {% block css %}
-    <link rel="stylesheet" href="{% static "css/blog.css" %}">
-  {% endblock css %}
+{% block css %}
+  <link rel="stylesheet" href="{% static "css/blog.css" %}">
+{% endblock css %}
 
-
-  <!--blog-->
-
-  <div class="grid grid-cols-1 lg:gap-x-5 ml-[25px] lg:mr-[70px] md:grid-cols-2 lg:grid-cols-4 ">
-
-  <!--Single blog -->
+<!-- Blog -->
+<div class="grid grid-cols-1 lg:gap-x-5 ml-[25px] lg:mr-[70px] md:grid-cols-2 lg:grid-cols-4">
   {% for blog in blogs %}
-  
-  <div
-    class="blog fit mr-[20px] sm-custom:ml-[-3px]  bg-[#363639] rounded-[16px] mt-10 cursor-pointer md:ml-[35px]" data-name="{{blog.title|lower}}" data-tags="{{blog.tags.all|join:", "}}"
-  >
-  <a href="{% url "blog_reading" blog.id %}">
-    <img class="w-fit rounded-[16px] h-[170px]" src="{{blog.thumbnail}}">
-
-    <div class="mt-4 mx-[15px]">
-      <!-- Title -->
-      <h1 class="text-white font-bold text-[16px]">
-        {{blog.title}}
-      </h1>
-      <!--Description-->
-      <p class="text-white whitespace-normal break-words font-light mt-2 text-[14px]">
-        {{blog.description|truncatewords:10|safe}} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
-      </p>
-    </div>
-  </a>
-    <!--Infomaton-->
-    <div class="flex justify-between items-center mx-[15px] mt-6 h-10">
-      <div class="flex justify-between items-center">
-        {% comment %} <img class="w-8 h-8 left-[15px] top-[264px] mt-[-10px] rounded-full"
-        src="" /> {% endcomment %}
-        <p class="text-white font-light text-[10px] ml-2 mt-[-8px]">
-          {{blog.author|upper}}
-        </p>
+    <div
+      class="blog fit mr-[20px] sm-custom:ml-[-3px] bg-[#363639] rounded-[16px] mt-10 cursor-pointer md:ml-[35px]"
+      data-name="{{ blog.title|lower }}" 
+      data-tags="{{ blog.tags.all|join:", " }}"
+    >
+      <a href="{% url "blog_reading" blog.id %}">
+        <img class="w-full rounded-[16px] h-[170px] object-cover" src="{{ blog.thumbnail|default:'path/to/default/image.jpg' }}">
+        <div class="mt-4 mx-[15px]">
+          <!-- Title -->
+          <h1 class="text-white font-bold text-[16px]">{{ blog.title }}</h1>
+          <!-- Description -->
+          <p class="text-white whitespace-normal break-words font-light mt-2 text-[14px]">
+            {{ blog.description|truncatewords:10|safe }} <a class="text-blue-400" href="{% url "blog_reading" blog.id %}">Read</a>
+          </p>
+        </div>
+      </a>
+      <!-- Information -->
+      <div class="flex justify-between items-center mx-[15px] mt-6 h-10">
+        <div class="flex justify-between items-center">
+          <p class="text-white font-light text-[10px] ml-2 mt-[-8px]">{{ blog.author|upper }}</p>
+        </div>
+        <p class="text-white font-light text-[10px] mt-[-8px]">{{ blog.created_at|timesince }} ago</p>
       </div>
-      <p class="text-white font-light text-[10px] mt-[-8px]">{{ blog.created_at|timesince}} ago</p>
     </div>
-  </div>
+  {% empty %}
+    <p class="text-white text-center col-span-4 mt-[319px]">No blogs available at the moment. Please check back later.</p>
   {% endfor %}
-
-  </div>
-
-
+</div>

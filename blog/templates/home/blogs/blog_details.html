@@ -39,8 +39,15 @@
           <div class="mx-3">
             <h1 class="text-white text-[20px] mt-2 font-bold">{{ comment.author.username }}</h1>
             <p class="text-white/90 mb-1">{{ comment.content }}</p>
-            <p class="text-white/70 text-[12px] text-end my-4">{{comment.created_at|timesince}} ago</p>
+            <p class="text-white/70 text-[12px] text-end flex my-2">{{comment.created_at|timesince}} ago</p>
           </div>
+          {% if comment.author == request.user %}
+          <form action="{% url 'delete_comment' comment.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-500 rounded-lg p-2 text-white text-center hover:bg-red-600 transition duration-[0.3s] ml-3 mb-2">Delete</button>
+
+        </form>
+          {% endif %}
         </li>
       {% empty %}
         <li class="text-white mt-2">No comments yet. Be the first to comment!</li>

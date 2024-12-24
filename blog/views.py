@@ -60,6 +60,13 @@ def blog_detail(request, id):
     })
 
 @login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comments, pk=comment_id)
+    if comment.author == request.user:
+        comment.delete()
+    return redirect('blog_reading', id=comment.blog.pk)
+
+@login_required
 def user_blogs(request):
     blogs = Blog.objects.filter(author=request.user)
     return render(request, 'home/blogs/user_blogs.html', {'blogs': blogs})

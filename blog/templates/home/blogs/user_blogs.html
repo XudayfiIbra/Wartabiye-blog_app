@@ -5,7 +5,7 @@
   <!-- Navbar-->
   {% include "navbar/navbar.html" %}
   {% block css %}
-    <link rel="stylesheet" href="{% static "css/blog.css" %}">
+    <link rel="stylesheet" href="{% static "css/user_blogs.css" %}">
   {% endblock css %}
 
 
@@ -20,7 +20,7 @@
     class="blog fit ml-[58px] sm-custom:ml-[-3px]  bg-[#363639] rounded-[16px] mt-10 cursor-pointer md:ml-[35px] h-fit" data-name="{{blog.title|lower}}" data-tags="{{blog.tags.all|join:", "}}"
   >
   <a href="{% url "blog_reading" blog.id %}">
-    <img class="w-fit rounded-[16px] h-[170px]" src="{{blog.thumbnail}}">
+    <img class="rounded-[16px] blog-image-cover" src="{{blog.thumbnail}}">
 
     <div class="mt-4 mx-[15px]">
       <!-- Title -->
